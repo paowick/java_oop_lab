@@ -13,7 +13,6 @@ public class Atm {
         accounts.add(new Account("gevurah", "05", "1234", 880));
         accounts.add(new Account("tiferet", "06", "1234", 1110));
 
-        while (true) {
         System.out.print("Step 1. Enter amount of all account = ");
         int accAmount = Integer.parseInt(scanner.nextLine());
         System.out.println("Step 2. Enter Detail of each account.");
@@ -30,7 +29,8 @@ public class Atm {
             int createBalance = Integer.parseInt(scanner.nextLine());
             accounts.add(new Account(createName, createID, createPassWord, createBalance));
         }
-
+        
+        while (true) {
             try {
                 System.out.println("=====================================================");
                 System.out.println("ATM ComputerThanyaburiBank");
@@ -88,8 +88,6 @@ public class Atm {
 
                         }
 
-                    }else{
-                    
                     }
                 }
 
