@@ -5,12 +5,12 @@ public class Atm {
 
     public static void main(String[] args) {
         ArrayList<Account> accounts = new ArrayList<Account>();
-        // accounts.add(new Account("keter", "01", "1234", 1000));
-        // accounts.add(new Account("binah", "02", "1234", 1230));
-        // accounts.add(new Account("da'at", "03", "1234", 5550));
-        // accounts.add(new Account("chokmah", "04", "1234", 230));
-        // accounts.add(new Account("gevurah", "05", "1234", 880));
-        // accounts.add(new Account("tiferet", "06", "1234", 1110));
+        accounts.add(new Account("keter", "01", "1234", 1000));
+        accounts.add(new Account("binah", "02", "1234", 1230));
+        accounts.add(new Account("da'at", "03", "1234", 5550));
+        accounts.add(new Account("chokmah", "04", "1234", 230));
+        accounts.add(new Account("gevurah", "05", "1234", 880));
+        accounts.add(new Account("tiferet", "06", "1234", 1110));
 
         System.out.print("Step 1. Enter amount of all account = ");
         int accAmount = Integer.parseInt(new Scanner(System.in).nextLine());
