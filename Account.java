@@ -1,10 +1,10 @@
-public class Account {
-    private String name;
+public class Account  extends Person{
     private String id;
     private String passWord;
     private int money;
-    public Account(String name,String id,String passWord,int money){
+    public Account(String name,String id,String passWord,int money,String personId){
         if(money > 1000000){money = 1000000;}
+        this.Personid = personId;
         this.name = name;
         this.id = id;
         this.passWord = passWord;
