@@ -98,7 +98,7 @@ public class Atm {
                                         break;
                                     
                                     case "4":
-                                        Transferable(i);
+                                        tranferAble(i);
                                         break;
                                     
                                     case "5":
@@ -157,7 +157,7 @@ public class Atm {
         System.out.println(accounts.get(i).getMoney());
         System.out.println("========================================= ");
     }
-    public static void Transferable(int i) {
+    public static void tranferAble(int i) {
         System.out.print("Enter destnation Account : ");
         String AccountID = scanner.nextLine().toString();
         System.out.print("Enter amount");
