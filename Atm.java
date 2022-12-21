@@ -51,6 +51,7 @@ public class Atm {
             accounts.add(new Account(createName, createAccountID, createPassWord, createBalance,createPersonID));
         }
     }
+    
     public static void userInterface(){
         boolean shouldBreak = false;
         System.out.print("Step 1. Enter amount of all account = ");
