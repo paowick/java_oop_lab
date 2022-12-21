@@ -24,4 +24,9 @@ public class Account  extends Person{
     }public void setMoney(int money) {
         this.money = money;
     }
+    public void addMoney(int amount) {
+        if(amount < 1000000 - this.money){
+            this.money = this.money+amount; 
+        }
+    }
 }
