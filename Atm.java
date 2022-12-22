@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-public class Atm {
+public class Atm implements Atmaction{
     private static Manager adMin = null;  
     private static ArrayList<Account> accounts = new ArrayList<Account>();
     static Scanner scanner = new Scanner(System.in);
