@@ -1,74 +1,77 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-public class Atm implements Atmaction{
-    private static Manager adMin = null;  
+
+public class Atm implements Atmaction {
+    private static Manager adMin = null;
     private static ArrayList<Account> accounts = new ArrayList<Account>();
-    private static double btcExchange = 0.0; 
+    private static double btcExchange = 0.0;
     static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        accounts.add(new Account("keter", "01", "1234", 1000  ,"123"));
-        accounts.add(new Account("binah", "02", "1234", 1230  ,"234"));
-        accounts.add(new Account("da'at", "03", "1234", 5550  ,"345"));
-        accounts.add(new Account("chokmah", "04", "1234", 230 ,"456"));
-        accounts.add(new Account("gevurah", "05", "1234", 880 ,"567"));
-        accounts.add(new Account("tiferet", "06", "1234", 1110,"678"));
-        while(true){
-            if(adMin == null){
+        accounts.add(new Account("keter", "01", "1234", 1000, "123"));
+        accounts.add(new Account("binah", "02", "1234", 1230, "234"));
+        accounts.add(new Account("da'at", "03", "1234", 5550, "345"));
+        accounts.add(new Account("chokmah", "04", "1234", 230, "456"));
+        accounts.add(new Account("gevurah", "05", "1234", 880, "567"));
+        accounts.add(new Account("tiferet", "06", "1234", 1110, "678"));
+        while (true) {
+            if (adMin == null) {
                 insertAcc(String.valueOf("admin"));
             }
             System.out.println("=====================================================");
             System.out.println("Login Manager id");
             System.out.print("Account ID :");
-            String adminID = scanner.nextLine().toString();
+            String adminID = scanner.next().toString();
             System.out.print("Account Password : ");
-            String adminPASS = scanner.nextLine().toString();
+            String adminPASS = scanner.next().toString();
             if (adMin.getId().equals(adminID) && adMin.getPassWord().equals(adminPASS)) {
                 btcExchangeRate();
                 userInterface();
-            }else{
+            } else {
                 System.out.println("password worng");
             }
         }
     }
-    public static void insertAcc(String i){ 
-        if(i == "admin"){
+
+    public static void insertAcc(String i) {
+        if (i == "admin") {
             System.out.print("insert admin Account : ");
-            String adminAccount = scanner.nextLine().toString();
+            String adminAccount = scanner.next().toString();
             System.out.print("Enter admin password : ");
-            String adminPassword= scanner.nextLine().toString();
+            String adminPassword = scanner.next().toString();
             adMin = new Manager(adminAccount, adminPassword);
-        }else{
-            System.out.print("No.");
-            System.out.println(i);
+        } else {
+            System.out.println("No." + i);
             System.out.print("Account ID = ");
-            String createAccountID = scanner.nextLine().toString();
+            String createAccountID = scanner.next().toString();
             System.out.print("Person ID = ");
-            String createPersonID = scanner.nextLine().toString();
+            String createPersonID = scanner.next().toString();
             System.out.print("Account Name = ");
-            String createName = scanner.nextLine().toString();
+            String createName = scanner.next().toString();
             System.out.print("Passowrd =");
-            String createPassWord = scanner.nextLine().toString();
+            String createPassWord = scanner.next().toString();
             System.out.print("Balance =");
-            int createBalance = Integer.parseInt(scanner.nextLine());
-            accounts.add(new Account(createName, createAccountID, createPassWord, createBalance,createPersonID));
+            int createBalance = Integer.parseInt(scanner.next());
+            accounts.add(new Account(createName, createAccountID, createPassWord, createBalance, createPersonID));
         }
     }
-    public static void userInterface(){
+
+    public static void userInterface() {
         boolean shouldBreak = false;
         System.out.print("Step 1. Enter amount of all account = ");
         int accAmount = scanner.nextInt();
         System.out.println("Step 2. Enter Detail of each account.");
         for (int i = 0; i < accAmount; i++) {
-            insertAcc(String.valueOf(i+1));
+            insertAcc(String.valueOf(i + 1));
         }
         while (true) {
             try {
                 System.out.println("=====================================================");
                 System.out.println("ATM ComputerThanyaburiBank");
                 System.out.print("Account ID :");
-                String ID = scanner.nextLine().toString();
+                String ID = scanner.next().toString();
                 System.out.print("Account Password : ");
-                String PASS = scanner.nextLine().toString();
+                String PASS = scanner.next().toString();
                 for (int i = 0; i < accounts.size(); i++) {
                     if (accounts.get(i).getId().equals(ID) && accounts.get(i).getPassWord().equals(PASS)) {
                         System.out.println("ATM ComputerThanyaburiBank");
@@ -83,26 +86,26 @@ public class Atm implements Atmaction{
                                 System.out.println("4.Transferable");
                                 System.out.println("5.Exit");
                                 System.out.print("choose : ");
-                                String choose = scanner.nextLine().toString();
+                                String choose = scanner.next().toString();
                                 switch (choose) {
                                     case "1":
-                                    
+
                                         checkAble(i);
                                         break;
-                                    
+
                                     case "2":
-                                    
-                                        withdrawAble(i);                               
+
+                                        withdrawAble(i);
                                         break;
-                                
+
                                     case "3":
                                         depositAable(i);
                                         break;
-                                    
+
                                     case "4":
                                         tranferAble(i);
                                         break;
-                                    
+
                                     case "5":
                                         shouldBreak = true;
                                         break;
@@ -114,59 +117,82 @@ public class Atm implements Atmaction{
                                     break;
                                 }
                             } catch (Exception e) {
-                                System.out.println("something worng2"+e);
+                                System.out.println("something worng2" + e);
                                 break;
                             }
                         }
-            
+
                     }
                 }
             } catch (Exception e) {
                 System.out.println("something worng1");
-            } 
-        } 
+            }
+        }
     }
+
     public static void checkAble(int i) {
         System.out.println("========================================= ");
-        System.out.print("account name : ");
-        System.out.println(accounts.get(i).getName());
-        System.out.print("you have money in account : ");
-        System.out.println(accounts.get(i).getMoney());
-        System.out.println("========================================= "); 
+        System.out.println("account name : " + accounts.get(i).getName());
+        System.out.println("you have money in account : " + accounts.get(i).getMoney() + " Bath");
+
+        System.out.println("you have money in account :" + (accounts.get(i).getMoney() / btcExchange) + " BTC");
+        System.out.println("========================================= ");
     }
+
     public static void withdrawAble(int i) {
+        String mode = "";
+        System.out.println("1. bath");
+        System.out.println("2. BTC");
+        System.out.print("Enter withdraw Mode : ");
+
+        String choosemode = scanner.next().toString();
+        switch (choosemode) {
+            case "1":
+                mode = "BATH";
+                break;
+            case "2":
+                mode = "BTC";
+                break;
+        }
         System.out.print("Enter amount : ");
-        int moneyWithDraw = Integer.parseInt(scanner.nextLine());
-        
+        double moneyWithDraw = scanner.nextDouble();
+
+        if (mode == "BTC") {
+            moneyWithDraw = moneyWithDraw * btcExchange;
+        }
+        int moneyWithDrawa = (int)moneyWithDraw;
+
         if (moneyWithDraw > accounts.get(i).getMoney()) {
             System.out.println("========================================= ");
             System.out.println("you dont have enough money");
-            System.out.println("========================================= ");   
-        }else{
-            accounts.get(i).setMoney(accounts.get(i).getMoney() - moneyWithDraw);
             System.out.println("========================================= ");
-            System.out.print("you have money in account : ");
-            System.out.println(accounts.get(i).getMoney());
+        } else {
+            accounts.get(i).setMoney(accounts.get(i).getMoney() - moneyWithDrawa);
+            System.out.println("========================================= ");
+            System.out.println("you have money in account : " + accounts.get(i).getMoney() + " Bath");
+            System.out.println("you have money in account :" + (accounts.get(i).getMoney() / btcExchange) + " BTC");
             System.out.println("========================================= ");
         }
     }
+
     public static void depositAable(int i) {
+
         System.out.print("Enter amount : ");
-        int moneyDeposit = Integer.parseInt(scanner.nextLine());
+        int moneyDeposit = Integer.parseInt(scanner.next());
         accounts.get(i).addMoney(moneyDeposit);
         System.out.println("========================================= ");
-        System.out.print("you have money in account : ");
-        System.out.println(accounts.get(i).getMoney());
+        System.out.println("you have money in account : " + accounts.get(i).getMoney() + " Bath");
         System.out.println("========================================= ");
     }
+
     public static void tranferAble(int i) {
         System.out.print("Enter destnation Account : ");
-        String AccountID = scanner.nextLine().toString();
+        String AccountID = scanner.next().toString();
         System.out.print("Enter amount");
-        int amountToTranfer = Integer.parseInt(scanner.nextLine());
+        int amountToTranfer = Integer.parseInt(scanner.next());
         for (int index = 0; index < accounts.size(); index++) {
-            if(accounts.get(index).getId().equals(AccountID)){   
-                if(accounts.get(index).equals(accounts.get(i))){
+            if (accounts.get(index).getId().equals(AccountID)) {
+                if (accounts.get(index).equals(accounts.get(i))) {
                     System.out.println("========================================= ");
                     System.out.println("it you Account : ");
                     System.out.println("========================================= ");
@@ -178,14 +204,15 @@ public class Atm implements Atmaction{
                 System.out.println("tranfer success");
                 System.out.println("========================================= ");
             }
-        } 
+        }
     }
-    public static void btcExchangeRate(){
+
+    public static void btcExchangeRate() {
         System.out.println("========================================= ");
         System.out.print("Please enter BTC rate : ");
         double btcExchangeRateIn = scanner.nextDouble();
         btcExchange = btcExchangeRateIn;
-        System.out.println("BTC rate : 1BTC => "+btcExchange+"bath");
+        System.out.println("BTC rate : 1BTC => " + btcExchange + "bath");
         System.out.println("========================================= ");
     }
 }
