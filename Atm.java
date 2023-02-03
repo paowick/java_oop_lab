@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Atm implements Atmaction{
     private static Manager adMin = null;  
     private static ArrayList<Account> accounts = new ArrayList<Account>();
+    private static double btcExchange = 0.0; 
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         accounts.add(new Account("keter", "01", "1234", 1000  ,"123"));
@@ -22,6 +23,7 @@ public class Atm implements Atmaction{
             System.out.print("Account Password : ");
             String adminPASS = scanner.nextLine().toString();
             if (adMin.getId().equals(adminID) && adMin.getPassWord().equals(adminPASS)) {
+                btcExchangeRate();
                 userInterface();
             }else{
                 System.out.println("password worng");
@@ -54,7 +56,7 @@ public class Atm implements Atmaction{
     public static void userInterface(){
         boolean shouldBreak = false;
         System.out.print("Step 1. Enter amount of all account = ");
-        int accAmount = Integer.parseInt(scanner.nextLine());
+        int accAmount = scanner.nextInt();
         System.out.println("Step 2. Enter Detail of each account.");
         for (int i = 0; i < accAmount; i++) {
             insertAcc(String.valueOf(i+1));
@@ -177,5 +179,13 @@ public class Atm implements Atmaction{
                 System.out.println("========================================= ");
             }
         } 
+    }
+    public static void btcExchangeRate(){
+        System.out.println("========================================= ");
+        System.out.print("Please enter BTC rate : ");
+        double btcExchangeRateIn = scanner.nextDouble();
+        btcExchange = btcExchangeRateIn;
+        System.out.println("BTC rate : 1BTC => "+btcExchange+"bath");
+        System.out.println("========================================= ");
     }
 }
